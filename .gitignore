@@ -1,0 +1,21 @@
+
+# Local environments and IDE files
+.venv/
+**/.idea/
+*.iml
+.DS_Store
+__pycache__/
+*.pyc
+
+# Java build outputs
+**/target/
+**/output/
+**/out/
+
+# Credentials
+*.pem
+*.key
+
+# Diagnostic captures
+*.pcap
+*.pcapng

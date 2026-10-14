@@ -1,0 +1,7 @@
+Outgoing SYN packets: 5724
+Distinct TCP opening attempts: 5076
+Repeated SYN packets: 648
+
+Distinct TCP opening attempts: 5076
+Attempts with observed SYN-ACK: 5076
+Attempts without observed SYN-ACK: 0

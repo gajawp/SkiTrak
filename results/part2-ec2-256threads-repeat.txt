@@ -1,0 +1,108 @@
+=== SkiTrak Client Part 2 ===
+Target: http://34.209.153.252:8080/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 256
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.016 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+
+Starting warmup: 32 threads, 32,000 swipes
+Warmup complete: 33.985 seconds
+
+Starting main phase: 256 threads, 468,000 swipes
+
+=== Warmup Results ===
+Successful swipes: 32,000
+Failed swipes: 0
+HTTP attempts: 32,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 33.985 seconds
+Throughput: 941.58 swipes/sec
+
+=== Main Results ===
+Successful swipes: 468,000
+Failed swipes: 0
+HTTP attempts: 468,001
+Retries: 1
+Non-201 responses: 0
+I/O errors: 1
+Runtime: 74.359 seconds
+Throughput: 6,293.81 swipes/sec
+
+=== Overall Ingest Results ===
+Successful swipes: 500,000
+Failed swipes: 0
+HTTP attempts: 500,001
+Retry attempts: 1
+Queue underflows: 0
+Events left in queue: 0
+Generation time: 0.016 seconds
+Warmup time: 33.985 seconds
+Main phase time: 74.359 seconds
+Ingest runtime: 108.346 seconds
+Wall-clock runtime before reporting/export: 108.642 seconds
+Ingest throughput, including warmup: 4,614.83 swipes/sec
+Throughput including setup: 4,602.26 swipes/sec
+HTTP: one shared HttpClient; connections reused internally.
+Physical HTTP connection counts: not exposed by this client API.
+
+=== WebSocket Results ===
+Resort 1: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 122.401 ms
+Resort 2: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 108.349 ms
+Resort 3: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 108.041 ms
+Resort 4: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 107.860 ms
+Resort 5: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 107.593 ms
+Resort 6: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 107.396 ms
+Resort 7: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 107.213 ms
+Resort 8: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 107.003 ms
+Resort 9: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 106.735 ms
+Resort 10: updates=217, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 106.504 ms
+Total leaderboard updates: 2,170
+Total WebSocket connections: 10
+Total WebSocket reconnections: 0
+Push latency: mean=-53.006 ms, median=-53.764 ms, p95=-48.112 ms, p99=-42.421 ms
+Push latency includes server/client clock skew.
+
+=== HTTP Attempt Latency ===
+Recorded attempts: 500,001
+Includes retry attempts; excludes retry backoff.
+Status code 0 represents an attempt without an HTTP response.
+Mean: 39.315 ms
+Median: 35.819 ms
+p95: 61.047 ms
+p99: 93.503 ms
+Min: 11.995 ms
+Max: 2319.944 ms
+
+=== Throughput Per Resort ===
+Resort 1: 49,849 successful swipes, 460.09 swipes/sec
+Resort 2: 49,557 successful swipes, 457.39 swipes/sec
+Resort 3: 49,798 successful swipes, 459.62 swipes/sec
+Resort 4: 50,067 successful swipes, 462.10 swipes/sec
+Resort 5: 49,951 successful swipes, 461.03 swipes/sec
+Resort 6: 49,863 successful swipes, 460.22 swipes/sec
+Resort 7: 50,174 successful swipes, 463.09 swipes/sec
+Resort 8: 50,359 successful swipes, 464.80 swipes/sec
+Resort 9: 50,547 successful swipes, 466.53 swipes/sec
+Resort 10: 49,835 successful swipes, 459.96 swipes/sec
+
+=== Saved Results ===
+Swipe CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/Skitrak-Assignment1/results/part2-256threads-1791755317589/swipes.csv
+Throughput CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/Skitrak-Assignment1/results/part2-256threads-1791755317589/throughput.csv
+
+RUN COMPLETE: All 500,000 swipes accounted for.
