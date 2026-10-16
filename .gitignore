@@ -19,3 +19,6 @@ __pycache__/
 # Diagnostic captures
 *.pcap
 *.pcapng
+
+results/tcp-details.txt
+results/tcp-read.log

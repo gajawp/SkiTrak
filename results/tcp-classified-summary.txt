@@ -1,0 +1,16 @@
+TCP CONNECTION ANALYSIS
+
+Distinct observed opening attempts: 5076
+Repeated SYN packets: 648
+Attempts with matched SYN-ACK: 5076
+Observed completed handshakes: 5076
+
+HTTP: openings=5066, completed handshakes=5066, connections with FIN=5037, connections with RST=39
+WebSocket: openings=10, completed handshakes=10, connections with FIN=10, connections with RST=10
+Mixed: openings=0, completed handshakes=0, connections with FIN=0, connections with RST=0
+Unclassified: openings=0, completed handshakes=0, connections with FIN=0, connections with RST=0
+
+Classification uses captured client request paths.
+FIN and RST counts describe connections, not packet totals.
+A captured final client ACK is evidence of handshake completion at the capture point; it does not prove server receipt.
+New HTTP connections are not automatically reconnections: pool expansion and replacement are not distinguished here.
