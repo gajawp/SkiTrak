@@ -54,3 +54,8 @@ CSV statistics and charts.
 I also preserved negative push timestamp differences and explained
 their clock-skew limitation instead of presenting them as valid
 absolute network latency.
+
+
+Links  
+1) https://chatgpt.com/share/6ae14e92-ce64-83e8-9edb-454577e3fce8
+2) https://chatgpt.com/share/6ae14f17-5990-83e8-ad00-063d6cbb4a6d
