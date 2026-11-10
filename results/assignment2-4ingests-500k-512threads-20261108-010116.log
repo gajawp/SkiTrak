@@ -1,0 +1,25 @@
+=== SkiTrak Client Part 2 ===
+Target: http://skitrak-alb-1256428710.us-west-2.elb.amazonaws.com/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 512
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.106 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+Exception in thread "main" java.net.ConnectException: Connection refused
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:1044)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)
+	at LoadClient.readProcessedCount(LoadClient.java:455)
+	at LoadClient.main(LoadClient.java:121)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:642)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:1043)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection$ConnectEvent.handle(PlainHttpConnection.java:134)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:1610)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:1555)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:1555)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:475)

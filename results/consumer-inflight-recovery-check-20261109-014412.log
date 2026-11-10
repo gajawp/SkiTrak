@@ -1,0 +1,5 @@
+MainPID=7196
+NRestarts=2
+ActiveState=active
+{"status":"UP"}
+{"uniqueSwipesProcessed":9210055,"processingPool":{"queuedBatches":0,"activeThreads":0,"configuredThreads":2,"maximumThreads":10,"dynamicScaling":true,"resortParallelismLimit":10},"resorts":10}

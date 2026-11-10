@@ -1,0 +1,20 @@
+Mon Nov  9 09:43:20 UTC 2026
+Timeout: 60.0 seconds ...
+Listing queues for vhost / ...
+name	messages_ready	messages_unacknowledged	consumers
+resort.10	2505	200	1
+leaderboard.audit	4189	0	0
+resort.8	2657	200	1
+resort.7	3030	200	1
+resort.4	3101	200	1
+skitrak.dead	0	0	0
+resort.2	2142	200	1
+resort.5	2431	200	1
+leaderboard.ws.ingest-3	0	0	1
+resort.6	2566	200	1
+leaderboard.ws.ingest-4	0	0	1
+leaderboard.ws.ingest-1	0	0	1
+resort.3	2386	200	1
+resort.9	2774	200	1
+leaderboard.ws.ingest-2	0	0	1
+resort.1	2956	200	1

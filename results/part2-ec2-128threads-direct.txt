@@ -1,0 +1,29 @@
+=== SkiTrak Client Part 2 ===
+Target: http://16.147.7.68:8080/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 128
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.015 seconds
+Connecting leaderboard subscribers...
+Exception in thread "main" java.util.concurrent.ExecutionException: java.net.http.HttpConnectTimeoutException: HTTP connect timed out
+	at java.base/java.util.concurrent.CompletableFuture.wrapInExecutionException(CompletableFuture.java:345)
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2117)
+	at LoadClient.main(LoadClient.java:107)
+Caused by: java.net.http.HttpConnectTimeoutException: HTTP connect timed out
+	at java.net.http/jdk.internal.net.http.MultiExchange.toTimeoutException(MultiExchange.java:744)
+	at java.net.http/jdk.internal.net.http.MultiExchange.checkRetryEligible(MultiExchange.java:631)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$3(MultiExchange.java:538)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:955)
+	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:932)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:531)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2221)
+	at java.net.http/jdk.internal.net.http.Http1Exchange.lambda$cancelImpl$1(Http1Exchange.java:609)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1516)
+Caused by: java.net.ConnectException: HTTP connect timed out
+	at java.net.http/jdk.internal.net.http.MultiExchange.toTimeoutException(MultiExchange.java:745)
+	... 10 more

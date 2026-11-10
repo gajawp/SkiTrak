@@ -1,0 +1,9 @@
+HTTP/1.1 502 Bad Gateway
+Server: awselb/2.0
+Date: Mon, 09 Nov 2026 09:23:05 GMT
+Content-Type: text/html
+Content-Length: 122
+Connection: keep-alive
+Set-Cookie: AWSALB=bpbnaGp5gRvVoAGLVWBNhGNXuJ7/hpYHAGLF1su/yu3Dc37OjZdEpPPV+wJWJ+95+d1YzXZYblf4mKhfljcics1AMcZBDFVlwE9JezeESCL5XvDzqjOZ39GrVSJ/; Expires=Mon, 16 Nov 2026 09:23:05 GMT; Path=/
+Set-Cookie: AWSALBCORS=bpbnaGp5gRvVoAGLVWBNhGNXuJ7/hpYHAGLF1su/yu3Dc37OjZdEpPPV+wJWJ+95+d1YzXZYblf4mKhfljcics1AMcZBDFVlwE9JezeESCL5XvDzqjOZ39GrVSJ/; Expires=Mon, 16 Nov 2026 09:23:05 GMT; Path=/; SameSite=None
+

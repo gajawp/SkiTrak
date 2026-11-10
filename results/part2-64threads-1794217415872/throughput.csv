@@ -1,0 +1,4 @@
+bucketStartSeconds,bucketEndSeconds,successfulSwipes,throughput
+0.000,10.000,35819,3581.900
+10.000,20.000,35536,3553.600
+20.000,27.534,28645,3802.009

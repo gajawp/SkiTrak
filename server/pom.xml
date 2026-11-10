@@ -42,8 +42,14 @@
             <artifactId>tyrus-standalone-client</artifactId>
             <version>1.20</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+        </dependency>
+
+        </dependencies>
     <build>
         <plugins>
             <plugin>

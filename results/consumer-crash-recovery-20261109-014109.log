@@ -1,0 +1,11 @@
+Mon Nov  9 09:41:10 UTC 2026
+MainPID=5529
+NRestarts=0
+MainPID=7005
+NRestarts=1
+ActiveState=active
+curl: (7) Failed to connect to localhost:9090 after 0 ms: Could not connect to server
+curl: (7) Failed to connect to localhost:9090 after 0 ms: Could not connect to server
+curl: (7) Failed to connect to localhost:9090 after 0 ms: Could not connect to server
+{"status":"UP"}
+{"uniqueSwipesProcessed":9110055,"resorts":10,"processingPool":{"dynamicScaling":true,"maximumThreads":10,"configuredThreads":3,"activeThreads":0,"queuedBatches":0,"resortParallelismLimit":10}}

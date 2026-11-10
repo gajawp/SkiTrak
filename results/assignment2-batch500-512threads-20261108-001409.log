@@ -1,0 +1,109 @@
+=== SkiTrak Client Part 2 ===
+Target: http://skitrak-alb-1256428710.us-west-2.elb.amazonaws.com/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 512
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.102 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+Consumer baseline: 3100000
+
+Starting warmup: 32 threads, 32,000 swipes
+Warmup complete: 14.277 seconds
+
+Starting main phase: 512 threads, 468,000 swipes
+
+=== Warmup Results ===
+Successful swipes: 32,000
+Failed swipes: 0
+HTTP attempts: 32,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 14.277 seconds
+Throughput: 2,241.40 swipes/sec
+
+=== Main Results ===
+Successful swipes: 468,000
+Failed swipes: 0
+HTTP attempts: 468,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 56.777 seconds
+Throughput: 8,242.84 swipes/sec
+
+=== Overall Ingest Results ===
+Successful swipes: 500,000
+Failed swipes: 0
+HTTP attempts: 500,000
+Retry attempts: 0
+Queue underflows: 0
+Events left in queue: 0
+Generation time: 0.102 seconds
+Warmup time: 14.277 seconds
+Main phase time: 56.777 seconds
+Ingest runtime: 71.059 seconds
+Wall-clock runtime before reporting/export: 76.402 seconds
+Ingest throughput, including warmup: 7,036.38 swipes/sec
+Throughput including setup and consumer wait: 6,544.30 swipes/sec
+HTTP: one shared HttpClient; connections reused internally.
+Physical HTTP connection counts: not exposed by this client API.
+
+=== WebSocket Results ===
+Resort 1: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 88.218 ms
+Resort 2: updates=11, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.842 ms
+Resort 3: updates=6, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.660 ms
+Resort 4: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.405 ms
+Resort 5: updates=5, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.256 ms
+Resort 6: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.054 ms
+Resort 7: updates=5, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 79.867 ms
+Resort 8: updates=4, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 79.680 ms
+Resort 9: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 79.431 ms
+Resort 10: updates=5, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 79.260 ms
+Total leaderboard updates: 72
+Total WebSocket connections: 10
+Total WebSocket reconnections: 0
+WebSocket latency not measured: requires correlated timing.
+Consumer count verification does not verify final WebSocket delivery.
+
+=== HTTP Attempt Latency ===
+Recorded attempts: 500,000
+Includes retry attempts; excludes retry backoff.
+Status code 0 represents an attempt without an HTTP response.
+Mean: 57.800 ms
+Median: 49.341 ms
+p95: 133.271 ms
+p99: 223.534 ms
+Min: 8.929 ms
+Max: 1004.318 ms
+
+=== Throughput Per Resort ===
+Resort 1: 49,854 successful swipes, 701.58 swipes/sec
+Resort 2: 50,162 successful swipes, 705.92 swipes/sec
+Resort 3: 49,876 successful swipes, 701.89 swipes/sec
+Resort 4: 49,953 successful swipes, 702.98 swipes/sec
+Resort 5: 49,788 successful swipes, 700.65 swipes/sec
+Resort 6: 49,570 successful swipes, 697.59 swipes/sec
+Resort 7: 50,428 successful swipes, 709.66 swipes/sec
+Resort 8: 50,022 successful swipes, 703.95 swipes/sec
+Resort 9: 50,024 successful swipes, 703.98 swipes/sec
+Resort 10: 50,323 successful swipes, 708.18 swipes/sec
+
+=== Saved Results ===
+Swipe CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/SkiTrak Assignment/results/part2-512threads-1794125726241/swipes.csv
+Throughput CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/SkiTrak Assignment/results/part2-512threads-1794125726241/throughput.csv
+Exception in thread "main" java.lang.IllegalStateException: Consumer completion check failed: request timed out
+	at LoadClient.main(LoadClient.java:264)

@@ -1,0 +1,142 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24322 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ------------------< cs6650.assignment1:client-part2 >-------------------
+[INFO] Building client-part2 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ client-part2 ---
+[INFO] skip non existing resourceDirectory /Users/preethigajawada/Desktop/Courses/DistributedSystems/Skitrak-Assignment1/client-part2/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ client-part2 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- exec:3.1.0:java (default-cli) @ client-part2 ---
+=== SkiTrak Client Part 2 ===
+Target: http://34.216.122.111:8080/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 128
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.037 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+
+Starting warmup: 32 threads, 32,000 swipes
+Warmup complete: 12.097 seconds
+
+Starting main phase: 128 threads, 468,000 swipes
+
+=== Warmup Results ===
+Successful swipes: 32,000
+Failed swipes: 0
+HTTP attempts: 32,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 12.097 seconds
+Throughput: 2,645.27 swipes/sec
+
+=== Main Results ===
+Successful swipes: 468,000
+Failed swipes: 0
+HTTP attempts: 468,002
+Retries: 2
+Non-201 responses: 0
+I/O errors: 2
+Runtime: 43.206 seconds
+Throughput: 10,831.73 swipes/sec
+
+=== Overall Ingest Results ===
+Successful swipes: 500,000
+Failed swipes: 0
+HTTP attempts: 500,002
+Retry attempts: 2
+Queue underflows: 0
+Events left in queue: 0
+Generation time: 0.037 seconds
+Warmup time: 12.097 seconds
+Main phase time: 43.206 seconds
+Ingest runtime: 55.306 seconds
+Wall-clock runtime before reporting/export: 55.464 seconds
+Ingest throughput, including warmup: 9,040.61 swipes/sec
+Throughput including setup: 9,014.79 swipes/sec
+HTTP: one shared HttpClient; connections reused internally.
+Physical HTTP connection counts: not exposed by this client API.
+
+=== WebSocket Results ===
+Resort 1: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 84.987 ms
+Resort 2: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 75.318 ms
+Resort 3: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 78.596 ms
+Resort 4: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 74.855 ms
+Resort 5: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 83.588 ms
+Resort 6: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 75.217 ms
+Resort 7: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 80.163 ms
+Resort 8: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 76.194 ms
+Resort 9: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 73.962 ms
+Resort 10: updates=110, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 75.864 ms
+Total leaderboard updates: 1,100
+Total WebSocket connections: 10
+Total WebSocket reconnections: 0
+Push latency: mean=-24.727 ms, median=-24.951 ms, p95=-22.397 ms, p99=-20.439 ms
+Push latency includes server/client clock skew.
+
+=== HTTP Attempt Latency ===
+Recorded attempts: 500,002
+Includes retry attempts; excludes retry backoff.
+Status code 0 represents an attempt without an HTTP response.
+Mean: 11.728 ms
+Median: 11.079 ms
+p95: 14.733 ms
+p99: 25.178 ms
+Min: 7.827 ms
+Max: 231.399 ms
+
+=== Throughput Per Resort ===
+Resort 1: 50,159 successful swipes, 906.94 swipes/sec
+Resort 2: 50,216 successful swipes, 907.97 swipes/sec
+Resort 3: 50,246 successful swipes, 908.51 swipes/sec
+Resort 4: 49,846 successful swipes, 901.28 swipes/sec
+Resort 5: 50,130 successful swipes, 906.41 swipes/sec
+Resort 6: 50,006 successful swipes, 904.17 swipes/sec
+Resort 7: 49,894 successful swipes, 902.14 swipes/sec
+Resort 8: 49,803 successful swipes, 900.50 swipes/sec
+Resort 9: 49,816 successful swipes, 900.73 swipes/sec
+Resort 10: 49,884 successful swipes, 901.96 swipes/sec
+
+=== Saved Results ===
+Swipe CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/Skitrak-Assignment1/results/part2-128threads-1793570663884/swipes.csv
+Throughput CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/Skitrak-Assignment1/results/part2-128threads-1793570663884/throughput.csv
+
+RUN COMPLETE: All 500,000 swipes accounted for.
+[WARNING] thread Thread[#67,HttpClient-1-Worker-0,5,LoadClient] was interrupted but is still alive after waiting at least 15000msecs
+[WARNING] thread Thread[#67,HttpClient-1-Worker-0,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#68,HttpClient-1-Worker-1,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#69,HttpClient-1-Worker-2,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#70,HttpClient-1-Worker-3,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#71,HttpClient-1-Worker-4,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#72,HttpClient-1-Worker-5,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#73,HttpClient-1-Worker-6,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#74,HttpClient-1-Worker-7,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#75,HttpClient-1-Worker-8,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] thread Thread[#76,HttpClient-1-Worker-9,5,LoadClient] will linger despite being asked to die via interruption
+[WARNING] NOTE: 10 thread(s) did not finish despite being asked to via interruption. This is not a problem with exec:java, it is a problem with the running code. Although not serious, it should be remedied.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:12 min
+[INFO] Finished at: 2026-11-01T14:04:39-08:00
+[INFO] ------------------------------------------------------------------------

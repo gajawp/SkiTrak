@@ -1,0 +1,21 @@
+CONTAINER ID   IMAGE                     COMMAND                  CREATED      STATUS                    PORTS                                                                                                                 NAMES
+6f5bff04a083   rabbitmq:4.1-management   "docker-entrypoint.s…"   8 days ago   Up 25 seconds (healthy)   4369/tcp, 5671/tcp, 15671/tcp, 15691-15692/tcp, 25672/tcp, 172.31.23.167:5672->5672/tcp, 127.0.0.1:15672->15672/tcp   skitrak-rabbitmq
+Timeout: 60.0 seconds ...
+Listing queues for vhost / ...
+name	messages_ready	messages_unacknowledged	consumers
+resort.10	0	0	1
+leaderboard.audit	4208	0	0
+resort.8	0	0	1
+resort.7	0	0	1
+resort.4	0	0	1
+skitrak.dead	0	0	0
+resort.2	0	0	1
+resort.5	0	0	1
+leaderboard.ws.ingest-3	0	0	1
+resort.6	0	0	1
+leaderboard.ws.ingest-4	0	0	1
+leaderboard.ws.ingest-1	0	0	1
+resort.3	0	0	1
+resort.9	0	0	1
+leaderboard.ws.ingest-2	0	0	1
+resort.1	0	0	1

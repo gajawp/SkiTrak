@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "utc": "2026-11-10T00:29:31.553449+00:00",
+  "definition": "Mac monotonic clock: immediately before dispatching POST to matching WebSocket receive; includes local scheduling, ingestion, queueing, commit and delivery",
+  "correlation": "one producer, one event at a time; exact next leaderboard version, increased selected skier total and exact consumer count delta; payload does not carry eventID",
+  "scope": "isolated sequential probes, not concurrent-load latency or WebSocket-only network latency",
+  "resort": 2,
+  "day": 1,
+  "requestedSamples": 20,
+  "samples": [],
+  "initialConsumerCount": 9310056,
+  "skierID": "85585",
+  "error": "RuntimeError: WebSocket initial snapshot differs from consumer; wait for convergence"
+}

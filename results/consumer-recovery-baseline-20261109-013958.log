@@ -1,0 +1,5 @@
+Restart=on-failure
+RestartUSec=5s
+MainPID=5529
+ActiveState=active
+{"resorts":10,"processingPool":{"dynamicScaling":true,"maximumThreads":10,"configuredThreads":2,"activeThreads":0,"queuedBatches":0,"resortParallelismLimit":10},"uniqueSwipesProcessed":9110054}

@@ -1,0 +1,20 @@
+{
+  "scope": "entire recording; filter CSV timestamps for benchmark-only metrics",
+  "successful_samples": 360,
+  "failed_samples": 0,
+  "sampled_peak_total_resort_depth": 326365,
+  "sample_mean_total_resort_depth": 25318.25,
+  "sampled_peak_by_resort": {
+    "resort.1": 36133,
+    "resort.10": 29774,
+    "resort.2": 31728,
+    "resort.3": 34594,
+    "resort.4": 31908,
+    "resort.5": 35445,
+    "resort.6": 31223,
+    "resort.7": 30870,
+    "resort.8": 28473,
+    "resort.9": 36217
+  },
+  "note": "Sampled observations, not a guarantee of continuous depth. Rates are management estimates. Audit queue excluded from resort backlog. Host metrics describe the broker host only. Consumer lag, TTL expiry, and no-loss reconciliation require separate evidence."
+}

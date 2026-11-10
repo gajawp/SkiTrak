@@ -1,0 +1,4 @@
+/target/
+/consumer-data/
+*.mv.db
+*.trace.db

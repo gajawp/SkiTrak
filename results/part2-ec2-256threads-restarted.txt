@@ -1,0 +1,12 @@
+=== SkiTrak Client Part 2 ===
+Target: http://35.85.222.123:8080/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 256
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.014 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+
+Starting warmup: 32 threads, 32,000 swipes

@@ -1,0 +1,11 @@
+HTTP/1.1 201 
+Date: Mon, 09 Nov 2026 09:36:45 GMT
+Content-Type: application/json;charset=UTF-8
+Content-Length: 32
+Connection: keep-alive
+Set-Cookie: AWSALB=Hx2D/fbQAmSydvLv3AkblhbXGXOTjcqDmy9ChomhJV1OUmajLWVmVkoU71mC5XqJvCVr8etaIIJ7/7zNjjbU+HoLQPMLjp6knH+c28KFXShCysYFvdUE34694jWG; Expires=Mon, 16 Nov 2026 09:36:45 GMT; Path=/
+Set-Cookie: AWSALBCORS=Hx2D/fbQAmSydvLv3AkblhbXGXOTjcqDmy9ChomhJV1OUmajLWVmVkoU71mC5XqJvCVr8etaIIJ7/7zNjjbU+HoLQPMLjp6knH+c28KFXShCysYFvdUE34694jWG; Expires=Mon, 16 Nov 2026 09:36:45 GMT; Path=/; SameSite=None
+X-Event-ID: 9B1B78F9-CC20-47AD-80A8-96BC34420800
+X-Server-ID: ingest-1
+
+{"message":"Lift ride accepted"}

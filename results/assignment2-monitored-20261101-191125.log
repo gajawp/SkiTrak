@@ -1,0 +1,110 @@
+=== SkiTrak Client Part 2 ===
+Target: http://skitrak-alb-1256428710.us-west-2.elb.amazonaws.com/ski-servlet
+Total swipes: 10000
+Warmup threads: 32
+Main threads: 32
+Resorts / subscribers: 10
+
+Generated 10,000 swipes in 0.016 seconds
+Connecting leaderboard subscribers...
+All leaderboard subscribers connected.
+Consumer baseline: 20003
+
+Starting warmup: 32 threads, 1,000 swipes
+Warmup complete: 0.690 seconds
+
+Starting main phase: 32 threads, 9,000 swipes
+Consumer caught up: 30,003 events; drain wait 22.214 seconds
+
+=== Warmup Results ===
+Successful swipes: 1,000
+Failed swipes: 0
+HTTP attempts: 1,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 0.690 seconds
+Throughput: 1,449.83 swipes/sec
+
+=== Main Results ===
+Successful swipes: 9,000
+Failed swipes: 0
+HTTP attempts: 9,000
+Retries: 0
+Non-201 responses: 0
+I/O errors: 0
+Runtime: 4.498 seconds
+Throughput: 2,001.09 swipes/sec
+
+=== Overall Ingest Results ===
+Successful swipes: 10,000
+Failed swipes: 0
+HTTP attempts: 10,000
+Retry attempts: 0
+Queue underflows: 0
+Events left in queue: 0
+Generation time: 0.016 seconds
+Warmup time: 0.690 seconds
+Main phase time: 4.498 seconds
+Ingest runtime: 5.188 seconds
+Wall-clock runtime before reporting/export: 27.999 seconds
+Ingest throughput, including warmup: 1,927.44 swipes/sec
+Throughput including setup and consumer wait: 357.16 swipes/sec
+HTTP: one shared HttpClient; connections reused internally.
+Physical HTTP connection counts: not exposed by this client API.
+
+=== WebSocket Results ===
+Resort 1: updates=8, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 442.551 ms
+Resort 2: updates=12, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 434.351 ms
+Resort 3: updates=7, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 434.073 ms
+Resort 4: updates=5, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 433.860 ms
+Resort 5: updates=13, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 433.588 ms
+Resort 6: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 433.394 ms
+Resort 7: updates=6, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 433.208 ms
+Resort 8: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 432.999 ms
+Resort 9: updates=7, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 432.774 ms
+Resort 10: updates=9, connections=1, reconnections=0, connection failures=0, invalid messages=0
+  Initial connection establishment: 432.571 ms
+Total leaderboard updates: 85
+Total WebSocket connections: 10
+Total WebSocket reconnections: 0
+WebSocket latency not measured: requires correlated timing.
+Consumer count verification does not verify final WebSocket delivery.
+
+=== HTTP Attempt Latency ===
+Recorded attempts: 10,000
+Includes retry attempts; excludes retry backoff.
+Status code 0 represents an attempt without an HTTP response.
+Mean: 15.453 ms
+Median: 14.849 ms
+p95: 19.168 ms
+p99: 23.668 ms
+Min: 10.200 ms
+Max: 234.108 ms
+
+=== Throughput Per Resort ===
+Resort 1: 995 successful swipes, 191.78 swipes/sec
+Resort 2: 1,006 successful swipes, 193.90 swipes/sec
+Resort 3: 980 successful swipes, 188.89 swipes/sec
+Resort 4: 985 successful swipes, 189.85 swipes/sec
+Resort 5: 1,011 successful swipes, 194.86 swipes/sec
+Resort 6: 1,011 successful swipes, 194.86 swipes/sec
+Resort 7: 1,003 successful swipes, 193.32 swipes/sec
+Resort 8: 1,037 successful swipes, 199.88 swipes/sec
+Resort 9: 977 successful swipes, 188.31 swipes/sec
+Resort 10: 995 successful swipes, 191.78 swipes/sec
+
+=== Saved Results ===
+Swipe CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/SkiTrak Assignment/results/part2-32threads-1793589113517/swipes.csv
+Throughput CSV: /Users/preethigajawada/Desktop/Courses/DistributedSystems/SkiTrak Assignment/results/part2-32threads-1793589113517/throughput.csv
+
+RUN COMPLETE: All 10,000 swipes accounted for; consumer count verified.

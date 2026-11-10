@@ -1,0 +1,22 @@
+=== SkiTrak Client Part 2 ===
+Target: http://16.147.7.68:8080/ski-servlet
+Total swipes: 500000
+Warmup threads: 32
+Main threads: 256
+Resorts / subscribers: 10
+
+Generated 500,000 swipes in 0.015 seconds
+Connecting leaderboard subscribers...
+Exception in thread "main" java.util.concurrent.ExecutionException: java.net.http.HttpConnectTimeoutException: HTTP connect timed out
+	at java.base/java.util.concurrent.CompletableFuture.wrapInExecutionException(CompletableFuture.java:345)
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2117)
+	at LoadClient.main(LoadClient.java:105)
+Caused by: java.net.http.HttpConnectTimeoutException: HTTP connect timed out
+	at java.net.http/jdk.internal.net.http.ResponseTimerEvent.handle(ResponseTimerEvent.java:68)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.purgeTimeoutsAndReturnNextDeadline(HttpClientImpl.java:1933)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:1519)
+	at java.base/java.lang.VirtualThread.run(VirtualThread.java:475)
+Caused by: java.net.ConnectException: HTTP connect timed out
+	at java.net.http/jdk.internal.net.http.ResponseTimerEvent.handle(ResponseTimerEvent.java:69)
+	... 3 more
