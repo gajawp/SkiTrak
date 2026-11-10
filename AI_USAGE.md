@@ -54,4 +54,6 @@ This distinction mattered in the in-flight consumer crash test: all 100,000 HTTP
 
 ## Transcript evidence
 
+My AI Chat link - https://chatgpt.com/share/6af28966-74e8-83e8-a59c-6f90455f6e67
+
 This reflection refers to the actual project conversation, terminal outputs, source corrections and saved results. No transcript link has been inserted because no share link was supplied. If a transcript is included, export the real exchange and remove credentials before publishing; do not fabricate a transcript.
