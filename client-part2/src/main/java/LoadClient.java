@@ -1,24 +1,34 @@
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import java.net.http.HttpClient;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.net.ProxySelector;
 
 public final class LoadClient {
 
-    private static final int TOTAL_SWIPES = 500_000;
+    private static final int TOTAL_SWIPES =
+            Integer.getInteger("skitrak.totalSwipes", 500_000);
     private static final int WARMUP_THREADS = 32;
-    private static final int WARMUP_SWIPES_PER_THREAD = 1_000;
     private static final int WARMUP_SWIPES =
-            WARMUP_THREADS * WARMUP_SWIPES_PER_THREAD;
+            Integer.getInteger("skitrak.warmupSwipes", 32_000);
 
     public static void main(String[] args) throws Exception {
+        if (TOTAL_SWIPES <= 0
+                || WARMUP_SWIPES <= 0
+                || WARMUP_SWIPES >= TOTAL_SWIPES) {
+            throw new IllegalArgumentException(
+                    "Require 0 < warmup swipes < total swipes");
+        }
         String baseUrl = args.length > 0
                 ? args[0]
                 : "http://localhost:8080/ski-servlet";
@@ -51,6 +61,7 @@ public final class LoadClient {
         long programStart = System.nanoTime();
 
         HttpClient client = HttpClient.newBuilder()
+                .proxy(ProxySelector.of(null))
                 .connectTimeout(Duration.ofSeconds(10))
                 .version(HttpClient.Version.HTTP_1_1)
                 .build();
@@ -87,6 +98,7 @@ public final class LoadClient {
         double warmupSeconds;
         double mainSeconds;
         double ingestSeconds;
+        String completionError = null;
 
         try {
             System.out.println("Connecting leaderboard subscribers...");
@@ -105,6 +117,9 @@ public final class LoadClient {
                     .get(20, TimeUnit.SECONDS);
 
             System.out.println("All leaderboard subscribers connected.");
+
+            long consumerBaseline = readProcessedCount(client);
+            System.out.println("Consumer baseline: " + consumerBaseline);
 
             ingestStartMillis = System.currentTimeMillis();
             long ingestStart = System.nanoTime();
@@ -144,13 +159,28 @@ public final class LoadClient {
 
             ingestSeconds = secondsSince(ingestStart);
 
+            long accepted = warmupMetrics.getSuccessful() + mainMetrics.getSuccessful();
+            long failedCount = warmupMetrics.getFailed() + mainMetrics.getFailed();
+            if (failedCount != 0) {
+                completionError = "HTTP failures occurred; uncertain events require reconciliation";
+            } else {
+                try {
+                    awaitConsumer(client, consumerBaseline, accepted);
+                } catch (InterruptedException error) {
+                    Thread.currentThread().interrupt();
+                    throw error;
+                } catch (Exception error) {
+                    completionError = "Consumer completion check failed: " + error.getMessage();
+                }
+            }
+
         } finally {
             for (LeaderboardSubscriber subscriber : subscribers) {
                 subscriber.close();
             }
         }
 
-        // Includes setup and ingest; excludes report generation and CSV export.
+        // Includes setup, ingest, and consumer drain; excludes reporting and CSV export.
         double totalSeconds = secondsSince(programStart);
 
         printPhase("Warmup", warmupMetrics, warmupSeconds);
@@ -192,7 +222,7 @@ public final class LoadClient {
                 successful / ingestSeconds);
 
         System.out.printf(
-                "Throughput including setup: %,.2f swipes/sec%n",
+                "Throughput including setup and consumer wait: %,.2f swipes/sec%n",
                 successful / totalSeconds);
 
         System.out.println(
@@ -230,8 +260,13 @@ public final class LoadClient {
                             + TOTAL_SWIPES);
         }
 
-        System.out.println(
-                "\nRUN COMPLETE: All 500,000 swipes accounted for.");
+        if (completionError != null) {
+            throw new IllegalStateException(completionError);
+        }
+
+        System.out.printf(
+                "%nRUN COMPLETE: All %,d swipes accounted for; consumer count verified.%n",
+                TOTAL_SWIPES);
     }
 
     private static double runPhase(
@@ -339,14 +374,12 @@ public final class LoadClient {
         long totalConnections = 0;
         long totalReconnections = 0;
 
-        List<double[]> latencySamples = new ArrayList<>();
 
         for (LeaderboardSubscriber subscriber : subscribers) {
             totalUpdates += subscriber.getUpdates();
             totalConnections += subscriber.getConnections();
             totalReconnections += subscriber.getReconnections();
 
-            latencySamples.add(subscriber.getPushLatenciesMs());
 
             double[] connectionTimes =
                     subscriber.getConnectionTimesMs();
@@ -376,35 +409,62 @@ public final class LoadClient {
         System.out.printf("Total WebSocket reconnections: %,d%n",
                 totalReconnections);
 
-        double[] latencies = latencySamples.stream()
-                .flatMapToDouble(Arrays::stream)
-                .sorted()
-                .toArray();
-
-        if (latencies.length > 0) {
-            double mean = Arrays.stream(latencies).average().orElse(0);
-
-            System.out.printf(
-                    Locale.US,
-                    "Push latency: mean=%.3f ms, median=%.3f ms, "
-                            + "p95=%.3f ms, p99=%.3f ms%n",
-                    mean,
-                    percentile(latencies, 0.50),
-                    percentile(latencies, 0.95),
-                    percentile(latencies, 0.99));
-        } else {
-            System.out.println("No push-latency samples received.");
-        }
-
         System.out.println(
-                "Push latency includes server/client clock skew.");
+                "WebSocket latency not measured: requires correlated timing.");
+        System.out.println(
+                "Consumer count verification does not verify final WebSocket delivery.");
     }
 
-    private static double percentile(
-            double[] sorted, double fraction) {
+    // Requires no concurrent producers and no pre-existing processing backlog.
+    private static void awaitConsumer(HttpClient client, long baseline, long accepted)
+            throws Exception {
+        long expected = Math.addExact(baseline, accepted);
+        long timeoutSeconds = Long.getLong("skitrak.drainTimeoutSeconds", 300L);
+        if (timeoutSeconds <= 0 || timeoutSeconds > 86400) {
+            throw new IllegalArgumentException("Drain timeout must be 1..86400 seconds");
+        }
+        long start = System.nanoTime();
+        long timeoutNanos = TimeUnit.SECONDS.toNanos(timeoutSeconds);
+        while (true) {
+            long processed = readProcessedCount(client);
+            if (processed == expected) {
+                System.out.printf(
+                        "Consumer caught up: %,d events; drain wait %.3f seconds%n",
+                        processed, secondsSince(start));
+                return;
+            }
+            if (processed < baseline || processed > expected) {
+                throw new IllegalStateException(
+                        "Unexpected consumer count " + processed + "; expected " + expected);
+            }
+            if (System.nanoTime() - start >= timeoutNanos) {
+                throw new IllegalStateException(
+                        "Timed out: processed " + processed + "; expected " + expected);
+            }
+            Thread.sleep(500);
+        }
+    }
 
-        int index = (int) Math.ceil(fraction * sorted.length) - 1;
-        return sorted[Math.max(0, Math.min(index, sorted.length - 1))];
+    private static long readProcessedCount(HttpClient client) throws Exception {
+        String statsUrl = System.getProperty(
+                "skitrak.consumerStatsUrl", "http://127.0.0.1:19090/stats");
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(statsUrl))
+                .timeout(Duration.ofSeconds(5))
+                .GET().build();
+        HttpResponse<String> response = client.send(
+                request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() != 200) {
+            throw new IllegalStateException(
+                    "Consumer stats returned HTTP " + response.statusCode());
+        }
+        Matcher matcher = Pattern.compile(
+                        "\"uniqueSwipesProcessed\"\\s*:\\s*(\\d+)")
+                .matcher(response.body());
+        if (!matcher.find()) {
+            throw new IllegalStateException("Missing uniqueSwipesProcessed");
+        }
+        return Long.parseLong(matcher.group(1));
     }
 
     private static double secondsSince(long startNanos) {

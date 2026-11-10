@@ -1,0 +1,362 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-10T00:35:45.172782+00:00",
+  "definition": "Mac monotonic clock: immediately before dispatching POST to matching WebSocket receive; includes local scheduling, ingestion, queueing, commit and delivery",
+  "correlation": "one producer, one event at a time; exact next leaderboard version, increased selected skier total and exact consumer count delta; payload does not carry eventID",
+  "scope": "isolated sequential probes, not concurrent-load latency or WebSocket-only network latency",
+  "resort": 2,
+  "day": 1,
+  "requestedSamples": 20,
+  "samples": [
+    {
+      "sample": 1,
+      "eventID": "01b0236e-e0f0-4caa-a014-c175dc5bec2b",
+      "httpStatus": 201,
+      "versionBefore": 414,
+      "versionAfter": 415,
+      "verticalBefore": 6107,
+      "verticalAfter": 6274,
+      "postDispatchToWebSocketMs": 51.363375,
+      "httpResponseObservedMs": 24.619291
+    },
+    {
+      "sample": 2,
+      "eventID": "c8108950-eac0-4823-ae26-c59d33bf29a9",
+      "httpStatus": 201,
+      "versionBefore": 415,
+      "versionAfter": 416,
+      "verticalBefore": 6274,
+      "verticalAfter": 6441,
+      "postDispatchToWebSocketMs": 50.967,
+      "httpResponseObservedMs": 25.594375
+    },
+    {
+      "sample": 3,
+      "eventID": "dd7fc3ca-8325-479e-8d09-2a49ab8d2d53",
+      "httpStatus": 201,
+      "versionBefore": 416,
+      "versionAfter": 417,
+      "verticalBefore": 6441,
+      "verticalAfter": 6608,
+      "postDispatchToWebSocketMs": 50.75875,
+      "httpResponseObservedMs": 25.926875
+    },
+    {
+      "sample": 4,
+      "eventID": "e0ad4956-c1ac-487f-9910-b64a9d8be910",
+      "httpStatus": 201,
+      "versionBefore": 417,
+      "versionAfter": 418,
+      "verticalBefore": 6608,
+      "verticalAfter": 6775,
+      "postDispatchToWebSocketMs": 49.176583,
+      "httpResponseObservedMs": 23.9705
+    },
+    {
+      "sample": 5,
+      "eventID": "6ed83920-ca98-4075-b2f8-8e19976a718d",
+      "httpStatus": 201,
+      "versionBefore": 418,
+      "versionAfter": 419,
+      "verticalBefore": 6775,
+      "verticalAfter": 6942,
+      "postDispatchToWebSocketMs": 51.235625,
+      "httpResponseObservedMs": 25.841417
+    },
+    {
+      "sample": 6,
+      "eventID": "79137e39-5e7a-4dfe-8d3d-bab061650e4d",
+      "httpStatus": 201,
+      "versionBefore": 419,
+      "versionAfter": 420,
+      "verticalBefore": 6942,
+      "verticalAfter": 7109,
+      "postDispatchToWebSocketMs": 49.947125,
+      "httpResponseObservedMs": 25.755209
+    },
+    {
+      "sample": 7,
+      "eventID": "c3db8fd3-6d81-454c-b59e-e0375cb098aa",
+      "httpStatus": 201,
+      "versionBefore": 420,
+      "versionAfter": 421,
+      "verticalBefore": 7109,
+      "verticalAfter": 7276,
+      "postDispatchToWebSocketMs": 52.538833,
+      "httpResponseObservedMs": 26.937833
+    },
+    {
+      "sample": 8,
+      "eventID": "4fe8449c-81ea-4f77-93d4-628039798523",
+      "httpStatus": 201,
+      "versionBefore": 421,
+      "versionAfter": 422,
+      "verticalBefore": 7276,
+      "verticalAfter": 7443,
+      "postDispatchToWebSocketMs": 52.371583,
+      "httpResponseObservedMs": 27.043708
+    },
+    {
+      "sample": 9,
+      "eventID": "17852e73-4e2f-45dc-8175-a9947c44b71d",
+      "httpStatus": 201,
+      "versionBefore": 422,
+      "versionAfter": 423,
+      "verticalBefore": 7443,
+      "verticalAfter": 7610,
+      "postDispatchToWebSocketMs": 51.990125,
+      "httpResponseObservedMs": 25.684083
+    },
+    {
+      "sample": 10,
+      "eventID": "84f53d60-731e-4472-b916-ddc40c5be191",
+      "httpStatus": 201,
+      "versionBefore": 423,
+      "versionAfter": 424,
+      "verticalBefore": 7610,
+      "verticalAfter": 7777,
+      "postDispatchToWebSocketMs": 51.323709,
+      "httpResponseObservedMs": 25.471625
+    },
+    {
+      "sample": 11,
+      "eventID": "80f2d79d-966d-4517-b87e-a853f77c6633",
+      "httpStatus": 201,
+      "versionBefore": 424,
+      "versionAfter": 425,
+      "verticalBefore": 7777,
+      "verticalAfter": 7944,
+      "postDispatchToWebSocketMs": 52.375792,
+      "httpResponseObservedMs": 27.242958
+    },
+    {
+      "sample": 12,
+      "eventID": "779653b0-24df-4511-a015-3b11ff658bf8",
+      "httpStatus": 201,
+      "versionBefore": 425,
+      "versionAfter": 426,
+      "verticalBefore": 7944,
+      "verticalAfter": 8111,
+      "postDispatchToWebSocketMs": 50.858917,
+      "httpResponseObservedMs": 24.548375
+    },
+    {
+      "sample": 13,
+      "eventID": "23649ed2-fae5-48a6-aa9b-a34572d082c3",
+      "httpStatus": 201,
+      "versionBefore": 426,
+      "versionAfter": 427,
+      "verticalBefore": 8111,
+      "verticalAfter": 8278,
+      "postDispatchToWebSocketMs": 51.618375,
+      "httpResponseObservedMs": 25.409583
+    },
+    {
+      "sample": 14,
+      "eventID": "dbd94202-98c1-41d0-b563-f112160e1d46",
+      "httpStatus": 201,
+      "versionBefore": 427,
+      "versionAfter": 428,
+      "verticalBefore": 8278,
+      "verticalAfter": 8445,
+      "postDispatchToWebSocketMs": 51.434292,
+      "httpResponseObservedMs": 25.766042
+    },
+    {
+      "sample": 15,
+      "eventID": "afa1be14-c958-49a2-8f22-761e800802a2",
+      "httpStatus": 201,
+      "versionBefore": 428,
+      "versionAfter": 429,
+      "verticalBefore": 8445,
+      "verticalAfter": 8612,
+      "postDispatchToWebSocketMs": 51.87625,
+      "httpResponseObservedMs": 26.414167
+    },
+    {
+      "sample": 16,
+      "eventID": "121fe3cc-498a-41cd-8306-e62bf1eacc38",
+      "httpStatus": 201,
+      "versionBefore": 429,
+      "versionAfter": 430,
+      "verticalBefore": 8612,
+      "verticalAfter": 8779,
+      "postDispatchToWebSocketMs": 50.964875,
+      "httpResponseObservedMs": 25.17625
+    },
+    {
+      "sample": 17,
+      "eventID": "65c4153e-430d-41f2-b664-afdc8eb8fa12",
+      "httpStatus": 201,
+      "versionBefore": 430,
+      "versionAfter": 431,
+      "verticalBefore": 8779,
+      "verticalAfter": 8946,
+      "postDispatchToWebSocketMs": 50.95575,
+      "httpResponseObservedMs": 26.112959
+    },
+    {
+      "sample": 18,
+      "eventID": "ced71ae9-1a03-4089-ae4b-12b8729abe43",
+      "httpStatus": 201,
+      "versionBefore": 431,
+      "versionAfter": 432,
+      "verticalBefore": 8946,
+      "verticalAfter": 9113,
+      "postDispatchToWebSocketMs": 51.60275,
+      "httpResponseObservedMs": 25.360083
+    },
+    {
+      "sample": 19,
+      "eventID": "84d206e8-96c1-45b1-8c07-221ea7df5006",
+      "httpStatus": 201,
+      "versionBefore": 432,
+      "versionAfter": 433,
+      "verticalBefore": 9113,
+      "verticalAfter": 9280,
+      "postDispatchToWebSocketMs": 51.437875,
+      "httpResponseObservedMs": 26.447417
+    },
+    {
+      "sample": 20,
+      "eventID": "d68c9a3f-d9ed-4784-a445-3735275a8705",
+      "httpStatus": 201,
+      "versionBefore": 433,
+      "versionAfter": 434,
+      "verticalBefore": 9280,
+      "verticalAfter": 9447,
+      "postDispatchToWebSocketMs": 49.211542,
+      "httpResponseObservedMs": 24.887959
+    }
+  ],
+  "initialConsumerCount": 9310056,
+  "skierID": "85585",
+  "initialConsumerSnapshot": {
+    "resortID": "2",
+    "dayID": "1",
+    "version": 414,
+    "serverTimestamp": "2026-11-10T00:21:48.337811Z",
+    "sourceTimestamp": "2026-11-10T00:21:14.690263Z",
+    "top": [
+      {
+        "rank": 1,
+        "skierID": "85585",
+        "vertical": 6107
+      },
+      {
+        "rank": 2,
+        "skierID": "33222",
+        "vertical": 5760
+      },
+      {
+        "rank": 3,
+        "skierID": "23520",
+        "vertical": 5721
+      },
+      {
+        "rank": 4,
+        "skierID": "88514",
+        "vertical": 5602
+      },
+      {
+        "rank": 5,
+        "skierID": "15112",
+        "vertical": 5593
+      },
+      {
+        "rank": 6,
+        "skierID": "88602",
+        "vertical": 5586
+      },
+      {
+        "rank": 7,
+        "skierID": "51011",
+        "vertical": 5495
+      },
+      {
+        "rank": 8,
+        "skierID": "65353",
+        "vertical": 5486
+      },
+      {
+        "rank": 9,
+        "skierID": "79301",
+        "vertical": 5479
+      },
+      {
+        "rank": 10,
+        "skierID": "56082",
+        "vertical": 5471
+      }
+    ]
+  },
+  "initialWebSocketSnapshot": {
+    "resortID": "2",
+    "dayID": "1",
+    "version": 414,
+    "serverTimestamp": "2026-11-10T00:35:45.350777Z",
+    "sourceTimestamp": "2026-11-10T00:21:14.690263Z",
+    "top": [
+      {
+        "rank": 1,
+        "skierID": "85585",
+        "vertical": 6107
+      },
+      {
+        "rank": 2,
+        "skierID": "33222",
+        "vertical": 5760
+      },
+      {
+        "rank": 3,
+        "skierID": "23520",
+        "vertical": 5721
+      },
+      {
+        "rank": 4,
+        "skierID": "88514",
+        "vertical": 5602
+      },
+      {
+        "rank": 5,
+        "skierID": "15112",
+        "vertical": 5593
+      },
+      {
+        "rank": 6,
+        "skierID": "88602",
+        "vertical": 5586
+      },
+      {
+        "rank": 7,
+        "skierID": "51011",
+        "vertical": 5495
+      },
+      {
+        "rank": 8,
+        "skierID": "65353",
+        "vertical": 5486
+      },
+      {
+        "rank": 9,
+        "skierID": "79301",
+        "vertical": 5479
+      },
+      {
+        "rank": 10,
+        "skierID": "56082",
+        "vertical": 5471
+      }
+    ],
+    "aggregationTimestamp": "2026-11-10T00:21:48.337811Z"
+  },
+  "finalConsumerCount": 9310076,
+  "summaryMs": {
+    "count": 20,
+    "mean": 51.2004563,
+    "median": 51.343542,
+    "p95NearestRank": 52.375792,
+    "min": 49.176583,
+    "max": 52.538833
+  }
+}

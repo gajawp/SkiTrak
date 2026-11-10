@@ -1,3 +1,5 @@
+import java.nio.ByteBuffer;
+import java.util.concurrent.ScheduledFuture;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
@@ -103,6 +105,7 @@ public final class LeaderboardSubscriber implements AutoCloseable {
 
         future.whenComplete((webSocket, error) -> {
             if (error != null && running.get()) {
+                log("connection failed: " + error);
                 connectionFailures.increment();
                 scheduleReconnect();
             }
@@ -142,22 +145,69 @@ public final class LeaderboardSubscriber implements AutoCloseable {
                 return;
             }
 
-            Instant sentAt = Instant.parse(matcher.group(1));
+            Instant.parse(matcher.group(1));
 
-            double latencyMs = Duration.between(sentAt, receivedAt)
-                    .toNanos() / 1_000_000.0;
-
-            pushLatenciesMs.add(latencyMs);
+            // Cross-machine timestamps are not reliable latency measurements.
+            // Keep counting updates, but do not collect these latency samples.
 
         } catch (RuntimeException error) {
             invalidMessages.increment();
         }
     }
 
+    private void log(String message) {
+        System.err.printf("%s [WebSocket resort %d] %s%n",
+                Instant.now(), resortID, message);
+    }
+
     private final class SubscriberListener implements WebSocket.Listener {
 
         private final long startNanos;
         private final StringBuilder fragments = new StringBuilder();
+        private final AtomicBoolean pingInFlight = new AtomicBoolean(false);
+        private volatile long lastPongNanos;
+        private volatile ScheduledFuture<?> heartbeat;
+
+        private void stopHeartbeat() {
+            ScheduledFuture<?> task = heartbeat;
+            if (task != null) task.cancel(false);
+        }
+
+        private void failConnection(WebSocket webSocket, String message) {
+            stopHeartbeat();
+            if (running.get() && socket == webSocket) {
+                log(message);
+                socket = null;
+                webSocket.abort();
+                scheduleReconnect();
+            }
+        }
+
+        private void sendHeartbeat(WebSocket webSocket) {
+            if (!running.get() || socket != webSocket) {
+                stopHeartbeat();
+                return;
+            }
+            if (System.nanoTime() - lastPongNanos > TimeUnit.SECONDS.toNanos(45)) {
+                failConnection(webSocket, "heartbeat timeout: no pong for 45 seconds");
+                return;
+            }
+            if (!pingInFlight.compareAndSet(false, true)) return;
+            ByteBuffer payload = ByteBuffer.allocate(Long.BYTES);
+            payload.putLong(System.nanoTime()).flip();
+            try {
+                webSocket.sendPing(payload).orTimeout(10, TimeUnit.SECONDS)
+                        .whenComplete((ignored, error) -> {
+                            pingInFlight.set(false);
+                            if (error != null) {
+                                failConnection(webSocket, "ping failed: " + error);
+                            }
+                        });
+            } catch (RuntimeException error) {
+                pingInFlight.set(false);
+                failConnection(webSocket, "ping failed: " + error);
+            }
+        }
 
         private SubscriberListener(long startNanos) {
             this.startNanos = startNanos;
@@ -175,6 +225,16 @@ public final class LeaderboardSubscriber implements AutoCloseable {
 
             connectionTimesMs.add(
                     (System.nanoTime() - startNanos) / 1_000_000.0);
+
+            lastPongNanos = System.nanoTime();
+            try {
+                heartbeat = reconnectExecutor.scheduleAtFixedRate(
+                        () -> sendHeartbeat(webSocket), 20, 20, TimeUnit.SECONDS);
+                if (!running.get()) stopHeartbeat();
+            } catch (java.util.concurrent.RejectedExecutionException error) {
+                webSocket.abort();
+                return;
+            }
 
             // Request the first incoming message.
             webSocket.request(1);
@@ -201,9 +261,20 @@ public final class LeaderboardSubscriber implements AutoCloseable {
         }
 
         @Override
+        public CompletionStage<?> onPong(WebSocket webSocket, ByteBuffer message) {
+            lastPongNanos = System.nanoTime();
+            webSocket.request(1);
+            return CompletableFuture.completedFuture(null);
+        }
+
+        @Override
         public CompletionStage<?> onClose(WebSocket webSocket,
                                           int statusCode,
                                           String reason) {
+            stopHeartbeat();
+            if (running.get()) {
+                log("closed: code=" + statusCode + ", reason=" + reason);
+            }
             if (socket == webSocket) {
                 socket = null;
                 scheduleReconnect();
@@ -214,6 +285,8 @@ public final class LeaderboardSubscriber implements AutoCloseable {
 
         @Override
         public void onError(WebSocket webSocket, Throwable error) {
+            stopHeartbeat();
+            if (running.get()) log("error: " + error);
             webSocket.abort();
 
             if (socket == webSocket) {

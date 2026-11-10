@@ -1,4 +1,6 @@
 public final class SwipeEvent {
+    private final String eventId = java.util.UUID.randomUUID().toString();
+    public String getEventId() { return eventId; }
 
     private final int skierID;
     private final int resortID;

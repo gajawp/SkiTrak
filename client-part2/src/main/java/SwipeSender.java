@@ -88,6 +88,7 @@ public final class SwipeSender implements Runnable {
                 .uri(URI.create(baseUrl + event.getPath()))
                 .timeout(Duration.ofSeconds(10))
                 .header("Content-Type", "application/json")
+                .header("X-Event-ID", event.getEventId())
                 .POST(HttpRequest.BodyPublishers.ofString(
                         event.getJsonBody()))
                 .build();

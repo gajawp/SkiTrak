@@ -1,0 +1,20 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.1-management
+    hostname: skitrak-broker
+    environment:
+      RABBITMQ_DEFAULT_USER: skitrak
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?Set RABBITMQ_PASSWORD}
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+volumes:
+  rabbit-data:

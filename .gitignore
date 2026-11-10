@@ -22,3 +22,23 @@ __pycache__/
 
 results/tcp-details.txt
 results/tcp-read.log
+# Additional local Python environments
+.venv-*/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Databases and profiling captures
+*.mv.db
+*.trace.db
+*.jfr
+/consumer-data/
+
+# Local backups and server copies
+/client-part2-backup/
+/backups/
+/assignment2-root-files/
+/SkiTrak_Diagnostics/
+/tomcat-ingest2/
